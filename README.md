@@ -3,13 +3,17 @@ Integração de pagamento Cielo para Magento 1.x
 
 Esta extensão utiliza a biblioteca [Tritoq/Payment](https://github.com/nezkal/Cielo), e distribui os arquivos da biblioteca, devido a incompatibilidade do Magento 1.x com o uso de namespaces. Agradecimentos ao Artur, que disponibilizou a biblioteca.
 
+## Compatibilidade
+Magento 1.7, 1.8 e 1.9.x
+
+## Requisitos
+* Credenciamento junto ao serviço Cielo E-commerce (deve ser mencionada a escolha por leitura do cartão na própria loja).
+* Baixar o certificado SSL do [Webservice Cielo](https://ecommerce.cielo.com.br). Basta acessar a página, clicar sobre o cadeado, e exportar o certificado para o formato _.crt_.
+
 ## Benefícios
 * Receber pagamentos de forma automática, possibilitando análise de crédito ou captura imediata.
 * Livre de intermediários, ou gateways de pagamentos.
 * Extensão completamente gratuita, sem propagandas, ou versões pagas.
-
-## Compatibilidade
-Magento 1.7, 1.8 e 1.9.x
 
 ## Introdução
 Neste módulo foram adotados os padrões de integração de cartões de crédito do Magento, visando maior controle e transparência das transações. Ou seja as operações do Magento para Faturar (Invoice), Reembolsar (Refund), etc, estão todas integradas as operações da Cielo.
