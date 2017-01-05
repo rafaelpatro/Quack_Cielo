@@ -1,0 +1,17 @@
+<?php
+/**
+ * @var $this Quack_Cielo_Block_Onepage_Success
+ */
+?>
+<?php if ($this->getIsMethodCielo() && !$this->getIsValidStatus()): ?>
+<script type="text/javascript">
+    $$('.page-title > h1').each(function(e){
+        e.textContent = '<?php echo $this->__('An error occurred in the process of payment') ?>';
+    });
+    $$('.sub-title').each(function(e){
+        e.textContent = '<?php echo $this->getStatusMessage() ?>';
+    });
+    $$('.col-main > p').each(Element.remove);
+</script>
+<p><?php echo $this->__("You can try again using another payment method: <a href='%s'>Try again</a>.", $this->escapeHtml($this->getReorderUrl())) ?></p>
+<?php endif ?>

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<layout>
+	<checkout_onepage_index>
+
+		<reference name="head">
+			<block type="core/text" name="qck_cielo_cc.checkout.validation">
+				<action method="setText">
+					<text>
+						<![CDATA[<script type="text/javascript">
+							Event.observe(window, 'load', function() {
+								Validation.creditCartTypes.set('EL', [false, new RegExp('^[0-9]{3}$'), false]);
+								Validation.creditCartTypes.set('AU', [false, new RegExp('^[0-9]{3}$'), false]);
+								payment.addBeforeInitFunction('qck_cielo_cc_beforeInitFunction', function(){
+									$$('#payment_form_qck_cielo_cc_additional > li').each(function(e){
+									    $('payment_form_qck_cielo_cc').insert(e);
+									});
+									$$('#payment_form_qck_cielo_cc_additional').each(Element.remove);
+								});
+							});
+						</script>]]>
+					</text>
+				</action>
+			</block>
+		</reference>
+
+	</checkout_onepage_index>
+
+	<checkout_onepage_success>
+		<reference name="checkout.success">
+			<block type="qck_cielo/onepage_success" name="qck_cielo.onepage.success" template="qck_cielo/success.phtml" />
+		</reference>
+	</checkout_onepage_success>
+</layout>

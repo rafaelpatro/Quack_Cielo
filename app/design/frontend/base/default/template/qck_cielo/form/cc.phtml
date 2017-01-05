@@ -1,0 +1,43 @@
+<?php
+/**
+ * @var $this Quack_Cielo_Block_Form_Cc
+ */ 
+?>
+<?php $_code = 'qck_cielo_cc' ?>
+<ul class="form-list" id="payment_form_<?php echo $_code ?>_additional" style="display:none">
+    <li>
+        <label for="<?php echo $_code ?>_cc_owner" class="required"><em>*</em><?php echo $this->__('Name on Card') ?></label>
+        <div class="input-box">
+            <input type="text" title="<?php echo $this->__('Name on Card') ?>" class="input-text required-entry" id="<?php echo $_code ?>_cc_owner" name="payment[cc_owner]" value="<?php echo $this->escapeHtml($this->getCcOwner()) ?>" />
+        </div>
+    </li>
+    <li>
+        <label for="<?php echo $_code ?>_cc_taxvat" class="required"><em>*</em><?php echo $this->__('CPF do Titular') ?></label>
+        <div class="input-box">
+            <input type="text" title="<?php echo $this->__('CPF do Titular') ?>" class="input-text required-entry validate-digits validate-cpf-cnpj" maxlength="11" id="<?php echo $_code ?>_cc_taxvat" name="payment[cc_taxvat]" value="<?php echo $this->getCcTaxvat() ?>" autocomplete="off">
+        </div>
+    </li>
+    <li>
+        <label for="<?php echo $_code ?>_cc_phone" class="required"><em>*</em><?php echo $this->__('Telefone Fixo') ?></label>
+        <div class="input-box">
+            <input type="text" title="<?php echo $this->__('Telefone Fixo (com DDD)') ?>" class="input-text required-entry validate-digits validate-telefone-fixo" maxlength="11" id="<?php echo $_code ?>_cc_phone" name="payment[cc_phone]" value="<?php echo $this->getCcPhone() ?>" autocomplete="off">
+        </div>
+    </li>
+    <li style="color:darkred; font-weight: bold;">
+        <?php echo $this->__('Atention: Check your billing address. It must be the same as registered at creation date.') ?>
+    </li>
+    <?php $installments = $this->getInstallments() ?>
+    <?php if (count($installments) > 1): ?>
+    <li>
+        <div class="input-box">
+            <label for="<?php echo $_code ?>_cc_installments"><?php echo $this->__('Parcelamento') ?> <span class="required">*</span></label><br />
+            <select id="<?php echo $_code ?>_cc_installments" name="payment[cc_installments]">
+                <?php foreach ($installments as $option): ?>
+                    <?php $selected = ($this->getCcInstallments() == $option['value']) ? 'selected="selected"' : ''; ?>
+                <option <?php echo $selected ?> value="<?php echo $option['value'] ?>"><?php echo $option['label'] ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    </li>
+    <?php endif; ?>
+</ul>
