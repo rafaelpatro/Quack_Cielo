@@ -9,7 +9,15 @@ Magento 1.7, 1.8 e 1.9.x
 
 
 ## Controle e Transparência
-Os detalhes da transação ficam mais protegidos em telas separadas, onde é possível gerenciar o acesso.
+Neste módulo foram adotados os padrões de integração de cartões de crédito do Magento. Ou seja as operações do Magento para Faturar (Invoice), Reembolsar (Refund), etc, estão integradas as operações da Cielo.
+
+* Para capturar uma transação basta faturar o pedido.
+* Para cancelar uma transação basta cancelar a fatura do pedido.
+* Para devolver ao cliente parte ou todo o valor pago, basta reembolsar o pedido.
+* O Magento disponibiliza estas e outras opções de acordo com a situação do pedido: rejeitar, aceitar, autorizar, etc.
+* Importante: As operações precisam ser marcadas como "online". O Magento permite operações online e offline.
+
+Alé disso os detalhes da transação ficam mais protegidos em telas separadas, onde é possível gerenciar o acesso.
 
 ### A tela do pedido exibe as informações básicas da transação:
 ![image](https://cloud.githubusercontent.com/assets/13813964/21666264/ba7a6fa0-d2d7-11e6-8c19-209fa98806d8.png)
