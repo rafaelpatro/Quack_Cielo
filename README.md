@@ -64,3 +64,75 @@ Processa pagamentos via cartão de débito.
 Os cartões aceitos na modalidade de crédito são Visa e MasterCard.
 
 Ao escolher a modalidade débito, o cliente é redirecionado ao ambiente do banco emissor do cartão, para autenticação. A autenticação é obrigatória, e pode ser feita via token, sms, ou qualquer outra forma disponibilizada pelo banco emissor do cartão.
+
+## Dicas
+
+### Como exibir imagens das bandeiras dos cartões na finalização do pedido?
+
+Por padrão as opções de seleção do cartão são as mesmas do Magento.
+![image](https://cloud.githubusercontent.com/assets/13813964/21870040/a353967a-d841-11e6-8368-e395a5e30bf7.png)
+
+Mas você pode ajustar a exibição facilmente, apenas acessando o Backend. Seguindo os passos abaixo, as bandeiras dos cartões devem aparecer dessa forma:
+
+  ![image](https://cloud.githubusercontent.com/assets/13813964/21869209/9fbd633c-d83d-11e6-81d8-d058475b7a1d.png)
+
+* Liberar a variável _web/secure/base_media_url_ em _Sistema > Permissões > Variáveis_.
+
+* Criar um bloco estático em _CMS > Blocos Estáticos_ e inserir o script abaixo.
+
+```html
+    <style type="text/css">
+        select[name="payment[cc_type]"] {
+            border: none;
+            outline: none;
+            overflow: visible;
+        }
+        select[name="payment[cc_type]"] > option {
+            background-position: 2px 2px !important;
+            background-repeat: no-repeat !important;
+            background-size: 58px auto !important;
+            display: inline;
+            float: left;
+            font-size: 0;
+            height: 41px;
+            margin: 0 5px 5px 0;
+            width: 62px;
+        }
+    </style>
+    <script type="text/javascript">
+        //<![CDATA[
+        payment.addAfterInitFunction('ccFlagStyle', function() {
+            $$('select[name="payment[cc_type]"]').each(function(e) {
+                e.size = 2;
+                if (e.down().value == '') {
+                    e.down().remove();
+                }
+            });
+            
+            $$('select[name="payment[cc_type]"] > option').each(function(e) {
+                var flagName = e.value;
+                if (flagName) {
+                    e.style.backgroundImage = 'url({{config path="web/secure/base_media_url"}}wysiwyg/' + flagName + '.png)';
+                }
+            });
+        });
+        //]]>
+    </script>
+```
+
+* Ainda na tela do bloco, clicar em _Insert Image..._ e fazer upload das imagens a seguir, com os respectivos nomes:
+
+  * AE.png, MC.png, VI.png, AU.png, JCB.png, DICL.png, DI.png, EL.png
+  
+  ![image](https://cloud.githubusercontent.com/assets/13813964/21869581/689f9f12-d83f-11e6-8769-ed81ab5a304a.png)
+  ![image](https://cloud.githubusercontent.com/assets/13813964/21869596/7bb6e2ea-d83f-11e6-9ace-ca9599c4d49c.png)
+  ![image](https://cloud.githubusercontent.com/assets/13813964/21869598/7e82a950-d83f-11e6-8588-2d12e186d533.png)
+  ![image](https://cloud.githubusercontent.com/assets/13813964/21869602/8158a2f6-d83f-11e6-9ec2-5a520117b332.png)
+  ![image](https://cloud.githubusercontent.com/assets/13813964/21869605/84a69814-d83f-11e6-95b8-6620c1dd182d.png)
+  ![image](https://cloud.githubusercontent.com/assets/13813964/21869606/87510a22-d83f-11e6-86c6-2720cc793b81.png)
+  ![image](https://cloud.githubusercontent.com/assets/13813964/21869608/89ef3b1e-d83f-11e6-88aa-034d7046cdf7.png)
+  ![image](https://cloud.githubusercontent.com/assets/13813964/21869610/8c977afc-d83f-11e6-90aa-73c88100fd89.png)
+  
+* Criar um Widget para o bloco acima, em _CMS > Widgets_. E adicionar opção de atualizar o layout da _Página Finalizar Pedido_, como ilustrado a seguir:
+
+  ![image](https://cloud.githubusercontent.com/assets/13813964/21869312/2ae6d42a-d83e-11e6-899d-a40927261010.png)
