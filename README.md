@@ -4,9 +4,11 @@ Integração de pagamento Cielo para Magento 1.x
 Esta extensão utiliza a biblioteca [Tritoq/Payment](https://github.com/nezkal/Cielo), e distribui os arquivos da biblioteca, devido a incompatibilidade do Magento 1.x com o uso de namespaces. Agradecimentos ao Artur, que disponibilizou a biblioteca.
 
 ## Veja também outras integrações
- - [Itaú Shopline](https://github.com/rafaelpatro/Quack_Itau)
- - [Banco do Brasil](https://github.com/rafaelpatro/Quack_BB)
- - [Bradesco](https://github.com/rafaelpatro/Quack_Bradesco)
+ - [Pagamento Itaú Shopline](https://github.com/rafaelpatro/Quack_Itau)
+ - [Pagamento Banco do Brasil](https://github.com/rafaelpatro/Quack_BB)
+ - [Pagamento Bradesco](https://github.com/rafaelpatro/Quack_Bradesco)
+ - [Frete Jamef Transportes](https://github.com/rafaelpatro/Quack_Jamef)
+ - [Frete TNT Brasil](https://github.com/rafaelpatro/Quack_TntBrasil)
  
 ## Compatibilidade
 Magento 1.7, 1.8 e 1.9.x
